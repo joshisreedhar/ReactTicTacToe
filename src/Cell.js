@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import {connect} from 'react-redux';
+import {handlePlayerMove} from './actions';
 
 const Div= styled.div`
 border: 1px;
@@ -7,7 +9,7 @@ border-color:black;
 `;
 
 
-class Cell extends React.Component{
+export class Cell extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -18,8 +20,8 @@ class Cell extends React.Component{
 
     handleClick(){
         if(this.state.cellText === ""){
-            this.setState({cellText:"x"});
-            this.props.onSelect();
+            this.setState({cellText:this.props.activeSymbol});
+            this.props.onSelect({row: this.props.row, col: this.props.col});
         }
     }
 
@@ -30,5 +32,17 @@ class Cell extends React.Component{
     }
 }
 
-export default Cell;
+function mapStateToProps(state){
+    return{
+        activeSymbol: state.activeSymbol,
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        onSelect: (cellIndex) => dispatch(handlePlayerMove(cellIndex))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cell);
 
