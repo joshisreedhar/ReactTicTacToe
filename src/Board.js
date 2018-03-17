@@ -4,7 +4,10 @@ import {connect} from 'react-redux';
 import Row from './Row';
 
 const Div = styled.div`
-display:block;
+    height:600px;
+    width:50%;
+    margin:0 auto;
+    border: 1px solid black;
 `;
 
 export const Board = function(props){

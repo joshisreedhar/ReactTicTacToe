@@ -4,10 +4,10 @@ import {Provider} from 'react-redux'
 import './index.css';
 import {createStore} from 'redux';
 import rootReducer from './reducers';
-import App from './App';
+import Board from './Board';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,{activePlayer:{symbol:"O"}});
 
 ReactDOM.render(
-<Provider store={store}><App /></Provider>, 
+<Provider store={store}><Board /></Provider>, 
 document.getElementById('root'));

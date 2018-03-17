@@ -4,8 +4,11 @@ import {connect} from 'react-redux';
 import {handlePlayerMove} from './actions';
 
 const Div= styled.div`
-border: 1px;
-border-color:black;
+        border: 1px solid black;
+        height:200px;
+        display:inline-block;
+        width:33%;
+        text-align: center;
 `;
 
 
@@ -34,7 +37,7 @@ export class Cell extends React.Component{
 
 function mapStateToProps(state){
     return{
-        activeSymbol: state.activeSymbol,
+        activeSymbol: state.activePlayer.symbol,
     }
 }
 

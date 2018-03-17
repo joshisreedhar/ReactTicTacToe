@@ -12,8 +12,7 @@ it('Cell should be connected to store', ()=>{
     Enzyme.configure({ adapter: new Adapter() })
     const clickHandler = jest.fn();
     const initialState = {
-        onSelect: clickHandler,
-        activeSymbol: "O"
+        activePlayer:{symbol: "O"}
     }
 
     const mockStore = configureStore();

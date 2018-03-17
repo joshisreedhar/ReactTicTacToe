@@ -9,7 +9,12 @@ import Board from './Board';
 it('Board should render 3 Rows and 9 Cells', ()=>{
     Enzyme.configure({ adapter: new Adapter() })
     const mockStore = configureStore();
-    let store = mockStore();
+    const initialState = {
+        activePlayer:{
+            symbol:"O"
+        }
+    };
+    let store = mockStore(initialState);
     let wrapper= mount(<Provider store={store}><Board /></Provider>);
     expect(wrapper.find('Row').length).toBe(3);
     expect(wrapper.find('Cell').length).toBe(9);
@@ -18,7 +23,12 @@ it('Board should render 3 Rows and 9 Cells', ()=>{
 it('Board should render correct indexes', ()=>{
     Enzyme.configure({ adapter: new Adapter() })
     const mockStore = configureStore();
-    let store = mockStore();
+    const initialState = {
+                            activePlayer:{
+                                symbol:"O"
+                            }
+                        };
+    let store = mockStore(initialState);
     let wrapper= mount(<Provider store={store}><Board /></Provider>);
     for(let rowIndex=1; rowIndex<4; rowIndex++){
         expect(wrapper.find(`#row${rowIndex}`).exists()).toBe(true);

@@ -1,5 +1,8 @@
 const rootReducer = function(state,action){
-    
+    switch(action.type){
+        default:
+            return state;
+    }
 }
 
 export default rootReducer;

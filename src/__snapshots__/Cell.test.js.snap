@@ -2,7 +2,7 @@
 
 exports[`Cell should render 1`] = `
 <div
-  className="sc-bdVaJa TPpzq"
+  className="sc-bdVaJa jGEKuS"
   id="cell11"
   onClick={[Function]}
 >
