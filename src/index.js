@@ -6,7 +6,7 @@ import {createStore} from 'redux';
 import rootReducer from './reducers';
 import Board from './Board';
 
-const initialState = {players:[{symbol: "O", id: "p1"}, {symbol: "X", id: "p2"}],activePlayer:{symbol: "O", id: "p1"}};
+const initialState = {players:[{symbol: "O", name:"Player 1", id: "p1"}, {symbol: "X",name:"Player 2", id: "p2"}],activePlayer:{symbol: "O", id: "p1"}};
 const store = createStore(rootReducer, initialState);
 
 ReactDOM.render(
