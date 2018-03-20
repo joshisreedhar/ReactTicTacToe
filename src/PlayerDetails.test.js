@@ -14,16 +14,7 @@ it("should render player details",()=>{
     Enzyme.configure({ adapter: new Adapter() });
     const players = [{symbol: "O",name:"Sreedhar", id: "p1"}, {symbol: "X",name:"Jagannath", id: "p2"}];
     const wrapper = mount(<PlayerDetails players={players} />);
-    const ids =wrapper.find('#id');
-    const names =wrapper.find('#player-name');
-    const symbols =wrapper.find('#symbol');
+    const ids =wrapper.find('#player-details');
 
-    expect(ids.first().text()).toEqual("p1");
-    expect(ids.at(1).text()).toEqual("p2");
-
-    expect(names.first().text()).toEqual("Sreedhar");
-    expect(names.at(1).text()).toEqual("Jagannath");
-
-    expect(symbols.first().text()).toEqual("O");
-    expect(symbols.at(1).text()).toEqual("X");
+    expect(ids.first().text()).toEqual("Sreedhar: OJagannath: X");
 });

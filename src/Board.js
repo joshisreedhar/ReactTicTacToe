@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import Row from './Row';
-import PlayerDetails from './PlayerDetails';
 
 const Div = styled.div`
     height:600px;
@@ -16,7 +15,6 @@ export const Board = function(props){
                 <Row rowIndex="1" />
                 <Row rowIndex="2" />
                 <Row rowIndex="3" />
-                <PlayerDetails players={props.players} />
            </Div> ;
 }
 
