@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import {handlePlayerMove} from './actions';
+import {handlePlayerMove, handlePlayerWon} from './actions';
+import {checkIfWinningMove} from './helper';
+import {get} from 'lodash';
 
 const Div= styled.div`
         border: 1px solid black;
@@ -24,7 +26,14 @@ export class Cell extends React.Component{
     handleClick(){
         if(this.state.cellText === ""){
             this.setState({cellText:this.props.activeSymbol});
-            this.props.onSelect({row: this.props.row, col: this.props.col});
+            const selectedCell = {row: this.props.row, col: this.props.col};
+            const playerWon = checkIfWinningMove(this.props.cells,selectedCell)
+            if(playerWon){
+                this.props.onWon(this.props.activePlayerId)
+            }
+            else{
+            this.props.onSelect(selectedCell);
+            }
         }
     }
 
@@ -38,12 +47,15 @@ export class Cell extends React.Component{
 function mapStateToProps(state){
     return{
         activeSymbol: state.activePlayer.symbol,
+        activePlayerId: state.activePlayer.id,
+        cells: get(state,'activePlayer.cells',[])
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        onSelect: (cellIndex) => dispatch(handlePlayerMove(cellIndex))
+        onSelect: (cellIndex) => dispatch(handlePlayerMove(cellIndex)),
+        onWon: (playerId) => dispatch(handlePlayerWon(playerId))
     }
 }
 

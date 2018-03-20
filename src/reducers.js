@@ -1,4 +1,4 @@
-import {PLAYER_PLAYED} from './actions';
+import {PLAYER_PLAYED, PLAYER_WON} from './actions';
 import {togglePlayer} from './helper';
 import {get} from 'lodash';
 
@@ -11,6 +11,8 @@ const rootReducer = function(state,action){
             cells.push(action.cellIndex);
             currentPlayer.cells = cells;
             return Object.assign({},state,{activePlayer:nextActivePlayer});
+        case PLAYER_WON:
+        return Object.assign({},state,{gameState:"Complete"});
         default:
             return state;
     }
