@@ -15,7 +15,7 @@ export const Board = function(props){
                 <Row rowIndex="1" />
                 <Row rowIndex="2" />
                 <Row rowIndex="3" />
-           </Div> ;
+           </Div> 
 }
 
 function mapStateToProps(state){

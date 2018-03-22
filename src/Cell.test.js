@@ -29,6 +29,22 @@ it('Filled Cell should not disptch call when clicked', ()=>{
     expect(mockHandler.mock.calls.length).toBe(0);
 });
 
+it('Cell should not disptch call when clicked when game is complete', ()=>{
+    Enzyme.configure({ adapter: new Adapter() })
+    const mockHandler = jest.fn();
+    let wrapper = shallow(<Cell row="1" col="1" cellText="" onSelect={mockHandler} gameState="Complete" />);
+    wrapper.find('#cell11').simulate('click');
+    expect(mockHandler.mock.calls.length).toBe(0);
+});
+
+it('Cell should not disptch call when clicked when game is drawn', ()=>{
+    Enzyme.configure({ adapter: new Adapter() })
+    const mockHandler = jest.fn();
+    let wrapper = shallow(<Cell row="1" col="1" cellText="" onSelect={mockHandler} gameState="Draw" />);
+    wrapper.find('#cell11').simulate('click');
+    expect(mockHandler.mock.calls.length).toBe(0);
+});
+
 it('Cell, Should use current player symbol to fill the cell', ()=>{
     Enzyme.configure({ adapter: new Adapter() })
     const mockHandler = jest.fn();

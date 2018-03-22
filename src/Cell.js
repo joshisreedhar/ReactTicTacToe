@@ -7,7 +7,7 @@ import {get} from 'lodash';
 
 const Div= styled.div`
         border: 1px solid black;
-        height:200px;
+        height:100px;
         display:inline-block;
         width:33%;
         text-align: center;
@@ -24,7 +24,7 @@ export class Cell extends React.Component{
     }
 
     handleClick(){
-        if(this.state.cellText === ""){
+        if(this.isCellClickable()){
             this.setState({cellText:this.props.activeSymbol});
             const selectedCell = {row: this.props.row, col: this.props.col};
             const playerWon = checkIfWinningMove(this.props.cells,selectedCell)
@@ -35,6 +35,10 @@ export class Cell extends React.Component{
             this.props.onSelect(selectedCell);
             }
         }
+    }
+
+    isCellClickable(){
+        return this.state.cellText === "" && this.props.gameState !== "Complete" && this.props.gameState !== "Draw";
     }
 
     render(){
@@ -48,7 +52,8 @@ function mapStateToProps(state){
     return{
         activeSymbol: state.activePlayer.symbol,
         activePlayerId: state.activePlayer.id,
-        cells: get(state,'activePlayer.cells',[])
+        cells: get(state,'activePlayer.cells',[]),
+        gameState: get(state, 'gameState','')
     }
 }
 

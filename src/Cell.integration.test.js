@@ -12,7 +12,7 @@ it('Cell should be connected to store', ()=>{
     Enzyme.configure({ adapter: new Adapter() })
     const clickHandler = jest.fn();
     const initialState = {
-        activePlayer:{symbol: "O"}
+        activePlayer:{symbol: "O", id:"p1"}, gameState:"", cells:[]
     }
 
     const mockStore = configureStore();
@@ -25,6 +25,9 @@ it('Cell should be connected to store', ()=>{
     wrapper.find('#cell12').first().simulate('click');
     expect(actions).toEqual([ handlePlayerMove({row:"1", col:"2"}) ]);
     expect(wrapper.find({activeSymbol: "O" }).exists()).toBe(true);
+    expect(wrapper.find({gameState: "" }).exists()).toBe(true);
+    expect(wrapper.find({activePlayerId: "p1" }).exists()).toBe(true);
+    expect(wrapper.find({cells: [] }).exists()).toBe(true);
 });
 
 it('Cell, Should check if current player is a winner when cell is selected', ()=>{
